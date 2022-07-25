@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expland-lg navbar-light bg-light navbar-static-top">
   <div class="container">
     <!-- Branding Image -->
-    <a class="navbar-brand" href="url('/')">
+    <a class="navbar-brand" href="{{ url('/') }}">
       LaraBBS
     </a>
 

@@ -13,7 +13,7 @@
 
   <title>@yield('title', 'LaraBBS') - Laravel</title>
 
-  <!-- Styles -->
+  <!-- Styles 加载样式 -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 
@@ -33,7 +33,7 @@
     @include('layouts._footer')
   </div>
 
-  <!-- Scripts -->
+  <!-- Scripts 加载JS -->
   <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
