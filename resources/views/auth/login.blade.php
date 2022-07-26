@@ -1,4 +1,4 @@
-{{--登录相关--}}
+{{--登录表单页面--}}
 @extends('layouts.app')
 
 @section('content')
