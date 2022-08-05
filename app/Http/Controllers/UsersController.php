@@ -10,6 +10,15 @@ use App\Handlers\ImageUploadHandler;
 class UsersController extends Controller
 {
     /**
+     * 构造器方法
+     */
+    public function __construct()
+    {
+        // 第一个是中间件名称， 第二个是要进行过滤的动作
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
+    /**
      * 处理个人页面显示
      */
     public function show(User $user)
@@ -22,6 +31,9 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        //启用授权验证
+        $this->authorize('update', $user);
+
         return view('users.edit', compact('user'));
     }
 
@@ -30,6 +42,9 @@ class UsersController extends Controller
      */
     public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
     {
+        //启用授权验证
+        $this->authorize('update', $user);
+
         $data = $request->all();
 
         if ($request->avatar) {
