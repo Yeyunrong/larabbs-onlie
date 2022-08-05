@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('email')->unique()->comment("邮箱");
             $table->timestamp('email_verified_at')->nullable()->comment("邮箱激活时间");
             $table->string('password')->comment("密码");
-            $table->rememberToken()->comment("记住我Token");
-            $table->timestamps()->comment("创建时间戳");
+            $table->string('remember_token')->comment("记住我Token");
+            $table->timestamps();
         });
     }
 
