@@ -22,11 +22,15 @@ class TopicsController extends Controller
 
     /**
      * 首页处理
+     * $request     请求参数
+     * $topic       话题
      */
-	public function index()
+	public function index(Request $request, Topic $topic)
 	{
         //限制分页查询
-		$topics = Topic::with('user','category')->paginate(30);
+		$topics = $topic->withOrder($request->order)
+                        ->with('user','category') //预加载防止 N+1
+                        ->paginate(20);
 		return view('topics.index', compact('topics'));
 	}
 
