@@ -1,4 +1,3 @@
-{{-- 话题列表 --}}
 @if (count($topics))
   <ul class="list-unstyled">
     @foreach ($topics as $topic)
