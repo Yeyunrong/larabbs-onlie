@@ -42,4 +42,8 @@ Route::post('email/resend', 'Auth\VerificationController@resend')->name('verific
 //用户个人中心显示、编辑和编辑处理
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 
+//话题列表操作相关
 Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+
+//分类话题列表
+Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
