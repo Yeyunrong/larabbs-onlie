@@ -17,3 +17,12 @@ function category_nav_active($category_id)
 {
     return active_class((if_route('categories.show') && if_route_param('category', $category_id)));
 }
+
+/**
+ * 添加话题摘录，将作为文章页面的 description 元标签使用，有利于 SEO 搜索引擎优化。摘录由文章内容中自动生成，生成的时机是在话题数据存入数据库之前。
+ */
+function make_excerpt($value, $length = 200)
+{
+    $excerpt = trim(preg_replace('/\r\n|\r|\n+/', ' ', strip_tags($value)));
+    return str()->limit($excerpt, $length);
+}

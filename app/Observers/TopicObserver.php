@@ -18,4 +18,13 @@ class TopicObserver
     {
         //
     }
+
+    /**
+     * 当帖子字段发生保存事件时，对 excerpt 字段进行赋值
+     */
+    public function saving(Topic $topic)
+    {
+        //make_excerpt 是自定义辅助函数 位于helpers.php
+        $topic->excerpt = make_excerpt($topic->body);
+    }
 }

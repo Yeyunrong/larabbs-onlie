@@ -6,6 +6,8 @@ use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
+use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * 话题列表
@@ -17,6 +19,7 @@ class TopicsController extends Controller
      */
     public function __construct()
     {
+        //限制未登录用户发帖
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
@@ -39,15 +42,28 @@ class TopicsController extends Controller
         return view('topics.show', compact('topic'));
     }
 
+    /**
+     * 进入话题创建
+     */
 	public function create(Topic $topic)
 	{
-		return view('topics.create_and_edit', compact('topic'));
+        $categories = Category::all();
+		return view('topics.create_and_edit', compact('topic', 'categories'));
 	}
 
-	public function store(TopicRequest $request)
+    /**
+     * 完成话题创建提交
+     * $request     请求参数
+     * $topic       一个空白的实例对象
+     */
+	public function store(TopicRequest $request, Topic $topic)
 	{
-		$topic = Topic::create($request->all());
-		return redirect()->route('topics.show', $topic->id)->with('message', 'Created successfully.');
+        //fill() 用于将传参的键值数组填充到模型的属性中。
+        $topic->fill($request->all());
+		$topic->user_id = Auth::id();//获取当前登录的ID
+        $topic->save();
+
+		return redirect()->route('topics.show', $topic->id)->with('success', '帖子创建成功');
 	}
 
 	public function edit(Topic $topic)
