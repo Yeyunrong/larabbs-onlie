@@ -15,6 +15,10 @@
 
   <!-- Styles 加载样式 -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+  {{-- 载入锚点 --}}
+  @yield('styles')
+
 </head>
 
 <body>
@@ -35,6 +39,10 @@
 
   <!-- Scripts 加载JS -->
   <script src="{{ mix('js/app.js') }}"></script>
+
+  {{-- 载入锚点 --}}
+  @yield('scripts')
+
 </body>
 
 </html>
