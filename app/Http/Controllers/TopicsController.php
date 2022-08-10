@@ -38,6 +38,9 @@ class TopicsController extends Controller
 		return view('topics.index', compact('topics'));
 	}
 
+    /**
+     * 帖子页面展示处理
+     */
     public function show(Topic $topic)
     {
         return view('topics.show', compact('topic'));

@@ -12,6 +12,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>@yield('title', 'LaraBBS') - Laravel</title>
+  <meta name="description" content="@yield('description', 'Laravel 项目展示')" />
 
   <!-- Styles 加载样式 -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
