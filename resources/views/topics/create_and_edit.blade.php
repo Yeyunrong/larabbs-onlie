@@ -31,16 +31,19 @@
         @include('shared._error')
 
         <div class="mb-3">
-          <input class="form-control" type="text" name="title" value="{{ old('title' . $topic->title) }}" placeholder = "请填写标题" required />
+          <input class="form-control" type="text" name="title" value="{{ old('title' , $topic->title) }}"
+          placeholder = "请填写标题" required />
         </div>
 
         <div class="mb-3">
           <select class="form-control" name="category_id" required>
-            <option value="" hidden disabled selected>
+            <option value="" hidden disabled  {{ $topic->id ? '' : 'selected' }}>
               请选择分类
             </option>
             @foreach ($categories as $value)
-              <option value="{{ $value->id }}">{{ $value->name }}</option>
+              <option value="{{ $value->id }}" {{ $topic->category_id == $value->id ? 'select' : '' }}>
+                {{ $value->name }}
+              </option>
             @endforeach
           </select>
         </div>
