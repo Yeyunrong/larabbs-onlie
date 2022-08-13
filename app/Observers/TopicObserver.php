@@ -9,22 +9,13 @@ use App\Models\Topic;
 
 class TopicObserver
 {
-    public function creating(Topic $topic)
-    {
-        //
-    }
-
-    public function updating(Topic $topic)
-    {
-        //
-    }
-
     /**
-     * 当帖子字段发生保存事件时，对 excerpt 字段进行赋值
+     * 入库前的数据处理
      */
     public function saving(Topic $topic)
     {
-        //make_excerpt 是自定义辅助函数 位于helpers.php
+        $topic->body = clean($topic->body, 'user_topic_body');
+
         $topic->excerpt = make_excerpt($topic->body);
     }
 }
