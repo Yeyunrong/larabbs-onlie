@@ -72,7 +72,7 @@ class TopicsController extends Controller
 		$topic->user_id = Auth::id();//获取当前登录的ID
         $topic->save();
 
-		return redirect()->route($topic->link(), $topic->id)->with('success', '帖子创建成功');
+		return redirect($topic->link())->with('success', '帖子创建成功！');
 	}
 
     /**
