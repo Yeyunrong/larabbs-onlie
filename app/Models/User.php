@@ -61,4 +61,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->id == $model->user_id;
     }
+
+    /**
+     * 当前用户的所有回复
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
 }

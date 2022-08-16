@@ -17,7 +17,15 @@ class Topic extends Model
     ];
 
     /**
-     * 关联分类
+     * 关联回复一对多关系
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+    /**
+     * 关联分类一对一关系
      */
     public function category()
     {
@@ -25,7 +33,7 @@ class Topic extends Model
     }
 
     /**
-     * 关联用户
+     * 关联用户一对一关系
      */
     public function user()
     {
