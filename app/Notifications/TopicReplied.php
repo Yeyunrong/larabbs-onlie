@@ -54,7 +54,7 @@ class TopicReplied extends Notification
         //存入数据库的数据
         return[
             'reply_id' => $this->reply->id,
-            'content' => $this->reply->content,
+            'reply_content' => $this->reply->content,
             'user_id' => $this->reply->user->id,
             'user_name' => $this->reply->user->name,
             'user_avatar' => $this->reply->user->avatar,

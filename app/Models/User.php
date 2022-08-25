@@ -94,4 +94,16 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Reply::class);
     }
+
+    /**
+     * 清除消息通知
+     */
+    public function markAsRead()
+    {
+        //消息数量为零后保存
+        $this->notification_count = 0;
+        $this->save();
+        // 将未读标记为已读
+        $this->unreadNotifications->markAsRead();
+    }
 }
