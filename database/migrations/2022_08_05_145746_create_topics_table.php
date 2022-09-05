@@ -9,6 +9,7 @@ return new class extends Migration
 	public function up()
 	{
 		Schema::create('topics', function(Blueprint $table) {
+            $table->comment('话题表');
             $table->increments('id');
             $table->string('title')->index()->comment('标题');
             $table->text('body')->comment("HTML样式");

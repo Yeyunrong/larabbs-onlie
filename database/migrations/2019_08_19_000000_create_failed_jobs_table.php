@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('failed_jobs', function (Blueprint $table) {
+            $table->comment('记录所有错误的队列');
             $table->id();
             $table->string('uuid')->unique();
             $table->text('connection');

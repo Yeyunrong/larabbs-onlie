@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('notifications', function (Blueprint $table) {
+            $table->comment('未读消息表');
             $table->uuid('id')->primary();
             $table->string('type')->comment('消息类型');
             //快速创建一个名称为 notifiable_id ，类型为 UNSIGNED BIGINT 的列

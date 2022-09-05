@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+            $table->comment('用户表');
             $table->id()->comment("用户标识");
             $table->string('name')->comment("用户名");
             $table->string('email')->unique()->comment("邮箱");

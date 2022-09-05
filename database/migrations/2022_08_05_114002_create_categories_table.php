@@ -15,6 +15,7 @@ return new class extends Migration
     {
         //分类表
         Schema::create('categories', function (Blueprint $table) {
+            $table->comment('分类表');
             $table->id();
             $table->string('name')->index()->comment('名称');
             $table->text('description')->nullable()->comment('描述');
