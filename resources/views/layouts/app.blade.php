@@ -11,8 +11,9 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>@yield('title', 'LaraBBS') - Laravel</title>
-  <meta name="description" content="@yield('description', 'Laravel 项目展示')" />
+  <title>@yield('title', 'LaraBBS') - {{ setting('site_name', 'Laravel 进阶实例') }}</title>
+  <meta name="description" content="@yield('description', setting('seo_description', 'LaraBBS laravel项目展示。'))" />
+  <meta name="keywords" content="@yield('keyword', setting('seo_keyword', 'Laravel,社区,论坛,开发者论坛'))" />
 
   <!-- Styles 加载样式 -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
