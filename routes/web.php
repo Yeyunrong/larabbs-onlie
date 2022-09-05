@@ -57,3 +57,6 @@ Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]
 
 //消息通知
 Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
+
+//权限不足提示页面
+Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
