@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * 用户管理配置页面
+ */
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
