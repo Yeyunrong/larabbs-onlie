@@ -13,8 +13,12 @@ class ReplyPolicy extends Policy
         return true;
     }
 
+    /**
+     * 只允「话题作者」和「话题回复者」才能删除回复
+     */
     public function destroy(User $user, Reply $reply)
     {
-        return true;
+        return $user->isAuthorOf($reply) || $user->isAuthorOf($reply->topic);
+        //return true;
     }
 }
