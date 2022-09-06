@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Topic;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
@@ -28,15 +29,16 @@ class TopicsController extends Controller
      * 首页处理
      * $request     请求参数
      * $topic       话题
+     * $user        用户
      */
-	public function index(Request $request, Topic $topic)
-	{
-        //限制分页查询
-		$topics = $topic->withOrder($request->order)
-                        ->with('user','category') //预加载防止 N+1
+	public function index(Request $request, Topic $topic, User $user)
+    {
+        $topics = $topic->withOrder($request->order)
+                        ->with('user', 'category')  // 预加载防止 N+1 问题
                         ->paginate(20);
-		return view('topics.index', compact('topics'));
-	}
+        $active_users = $user->getActiveUsers();
+        return view('topics.index', compact('topics', 'active_users'));
+    }
 
     /**
      * 帖子页面展示处理
