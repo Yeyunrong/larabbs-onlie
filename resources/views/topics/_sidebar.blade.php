@@ -5,7 +5,7 @@
     </a>
   </div>
 </div>
-
+{{-- 活跃用户显示 --}}
 @if (count($active_users))
   <div class="card mt-4">
     <div class="card-body active-users pt-2">
@@ -18,6 +18,23 @@
           </div>
           <div class="media-body">
             <small class="media-heading text-secondary">{{ $active_user->name }}</small>
+          </div>
+        </a>
+      @endforeach
+    </div>
+  </div>
+@endif
+
+{{-- 推荐资源链接列表 --}}
+@if (count($links))
+  <div class="card mt-4">
+    <div class="card-body pt-2">
+      <div class="text-center mt-1 mb-0 text-muted">资源推荐</div>
+      <hr class="mt-2 mb-3">
+      @foreach ($links as $link)
+        <a class="d-flex mt-1 text-decoration-none" href="{{ $link->link }}">
+          <div class="media-body">
+            <span class="media-heading text-muted">{{ $link->title }}</span>
           </div>
         </a>
       @endforeach

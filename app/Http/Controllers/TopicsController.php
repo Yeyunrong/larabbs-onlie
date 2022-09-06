@@ -10,6 +10,7 @@ use App\Http\Requests\TopicRequest;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use App\Handlers\ImageUploadHandler;
+use App\Models\Link;
 
 /**
  * 话题列表
@@ -30,14 +31,17 @@ class TopicsController extends Controller
      * $request     请求参数
      * $topic       话题
      * $user        用户
+     * $link        资源链接
      */
-	public function index(Request $request, Topic $topic, User $user)
+    public function index(Request $request, Topic $topic, User $user, Link $link)
     {
         $topics = $topic->withOrder($request->order)
                         ->with('user', 'category')  // 预加载防止 N+1 问题
                         ->paginate(20);
         $active_users = $user->getActiveUsers();
-        return view('topics.index', compact('topics', 'active_users'));
+        $links = $link->getAllCached();
+
+        return view('topics.index', compact('topics', 'active_users', 'links'));
     }
 
     /**
