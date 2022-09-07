@@ -35,8 +35,13 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
+            //处理路由绑定
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\EnsureEmailIsVerified::class
+            //强制用户邮箱验证
+            \App\Http\Middleware\EnsureEmailIsVerified::class,
+            // 记录用户最后活跃时间
+            \App\Http\Middleware\RecordLastActivedTime::class,
+
         ],
 
         'api' => [

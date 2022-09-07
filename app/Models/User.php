@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
+    use Traits\LastActivedAtHelper;
     use HasRoles;
     use HasApiTokens, HasFactory, MustVerifyEmailTrait;
     use Traits\ActiveUserHelper;
