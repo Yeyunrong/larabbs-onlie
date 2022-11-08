@@ -18,10 +18,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v1')->name('api.v1.')->group(function() {
+Route::prefix('v1')->namespace('Api')->name('api.v1.')->group(function () {
+    //测试
     Route::get('version', function() {
         return 'this is version v1';
     })->name('version');
+    // 短信验证码
+    Route::post('verificationCodes', 'VerificationCodesController@store')
+        ->name('verificationCodes.store');
 });
 
 Route::prefix('v2')->name('api.v2.')->group(function() {
